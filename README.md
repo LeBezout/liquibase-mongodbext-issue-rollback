@@ -30,6 +30,6 @@ Second case : **createIndex** auto-rollback failed.
 * Execute `./rollback.sh` (or `liquibase --defaults-file=conf/h2.properties rollback V0`) to rollback all the changesets
   * [liquibase.integration] dropIndex is not supported on h2
 
-## Traces sample
+## Trace samples
 
 See [trace.txt](trace.txt)
