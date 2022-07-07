@@ -1,0 +1,218 @@
+REMOVE FILE : <LIQUIBASE_HOME>/lib/liquibase-mongodb-4.12.0.jar
+
+$ ./status.sh
+Starting Liquibase at 11:19:18 (version 4.12.0 #3073 built at 2022-06-17 05:59+0000)
+Liquibase Version: 4.12.0
+Liquibase Community 4.12.0 by Liquibase
+8 change sets have not been applied to SA@jdbc:h2:file:./db/H2_DB
+Liquibase command 'status' was executed successfully.
+
+$ ./update.sh
+Starting Liquibase at 11:19:54 (version 4.12.0 #3073 built at 2022-06-17 05:59+0000)
+Liquibase Version: 4.12.0
+Liquibase Community 4.12.0 by Liquibase
+Running Changeset: db-changelog-master.xml::tag-0::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-table-1::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-table-2::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-table-3::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-idx-1::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-idx-2::DEMO
+Running Changeset: db-changelog-master.xml::V1.0-idx-3::DEMO
+Running Changeset: db-changelog-master.xml::tag-1::DEMO
+Liquibase command 'update' was executed successfully.
+
+$ ./status.sh
+Starting Liquibase at 11:20:56 (version 4.12.0 #3073 built at 2022-06-17 05:59+0000)
+Liquibase Version: 4.12.0
+Liquibase Community 4.12.0 by Liquibase
+SA@jdbc:h2:file:./db/H2_DB is up to date
+Liquibase command 'status' was executed successfully.
+
+------------------------------------------------------------------------
+
+ADD FILE : <LIQUIBASE_HOME>/lib/liquibase-mongodb-4.12.0.jar
+
+$ ./rollback.sh
+[vagrant@pdt-demo-liquibase liquibase-mongodbext-issue-rollback]$ ./rollback.sh
+Starting Liquibase at 14:41:07 (version 4.12.0 #3073 built at 2022-06-17 05:59+0000)
+Liquibase Version: 4.12.0
+Liquibase Community 4.12.0 by Liquibase
+Rolling Back Changeset: db-changelog-master.xml::tag-1::DEMO
+Rolling Back Changeset: db-changelog-master.xml::V1.0-idx-3::DEMO
+[2022-07-07 14:41:10] GRAVE [liquibase.integration] dropIndex is not supported on h2
+liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: Unexpected error running Liquibase: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.command.CommandScope.execute(CommandScope.java:162)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:51)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:21)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2358)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2314)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine$RunLast.execute(CommandLine.java:2316)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at liquibase.integration.commandline.LiquibaseCommandLine.lambda$execute$1(LiquibaseCommandLine.java:336)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.integration.commandline.LiquibaseCommandLine.execute(LiquibaseCommandLine.java:301)
+	at liquibase.integration.commandline.LiquibaseCommandLine.main(LiquibaseCommandLine.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at liquibase.integration.commandline.LiquibaseLauncher.main(LiquibaseLauncher.java:91)
+Caused by: liquibase.exception.LiquibaseException: Unexpected error running Liquibase: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.integration.commandline.Main$1.run(Main.java:443)
+	at liquibase.integration.commandline.Main$1.run(Main.java:221)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.integration.commandline.Main.run(Main.java:221)
+	at liquibase.command.AbstractCliWrapperCommandStep.run(AbstractCliWrapperCommandStep.java:33)
+	at liquibase.command.CommandScope.execute(CommandScope.java:156)
+	... 20 more
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.RollbackFailedException: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126)
+	at liquibase.Liquibase$9.lambda$run$0(Liquibase.java:1189)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Liquibase$9.run(Liquibase.java:1188)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2405)
+	at liquibase.Liquibase.rollback(Liquibase.java:1120)
+	at liquibase.integration.commandline.Main.doMigration(Main.java:1899)
+	at liquibase.integration.commandline.Main$1.lambda$run$0(Main.java:398)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.integration.commandline.Main$1.run(Main.java:397)
+	... 26 more
+Caused by: liquibase.exception.RollbackFailedException: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.changelog.ChangeSet.rollback(ChangeSet.java:828)
+	at liquibase.changelog.visitor.RollbackVisitor.visit(RollbackVisitor.java:53)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Scope.child(Scope.java:247)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65)
+	... 46 more
+Caused by: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.change.AbstractChange.generateRollbackStatementsFromInverse(AbstractChange.java:496)
+	at liquibase.change.AbstractChange.generateRollbackStatements(AbstractChange.java:453)
+	at liquibase.database.AbstractJdbcDatabase.executeRollbackStatements(AbstractJdbcDatabase.java:1325)
+	at liquibase.changelog.ChangeSet.rollback(ChangeSet.java:814)
+	... 66 more
+Caused by: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.change.AbstractChange.generateRollbackStatementsFromInverse(AbstractChange.java:490)
+	... 69 more
+
+
+Unexpected error running Liquibase: dropIndex is not supported on h2
+
+liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: Unexpected error running Liquibase: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.command.CommandScope.execute(CommandScope.java:162)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:51)
+	at liquibase.integration.commandline.CommandRunner.call(CommandRunner.java:21)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2358)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2314)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine$RunLast.execute(CommandLine.java:2316)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at liquibase.integration.commandline.LiquibaseCommandLine.lambda$execute$1(LiquibaseCommandLine.java:336)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.integration.commandline.LiquibaseCommandLine.execute(LiquibaseCommandLine.java:301)
+	at liquibase.integration.commandline.LiquibaseCommandLine.main(LiquibaseCommandLine.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at liquibase.integration.commandline.LiquibaseLauncher.main(LiquibaseLauncher.java:91)
+Caused by: liquibase.exception.LiquibaseException: Unexpected error running Liquibase: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.integration.commandline.Main$1.run(Main.java:443)
+	at liquibase.integration.commandline.Main$1.run(Main.java:221)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.integration.commandline.Main.run(Main.java:221)
+	at liquibase.command.AbstractCliWrapperCommandStep.run(AbstractCliWrapperCommandStep.java:33)
+	at liquibase.command.CommandScope.execute(CommandScope.java:156)
+	... 20 more
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.RollbackFailedException: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126)
+	at liquibase.Liquibase$9.lambda$run$0(Liquibase.java:1189)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Liquibase$9.run(Liquibase.java:1188)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2405)
+	at liquibase.Liquibase.rollback(Liquibase.java:1120)
+	at liquibase.integration.commandline.Main.doMigration(Main.java:1899)
+	at liquibase.integration.commandline.Main$1.lambda$run$0(Main.java:398)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.integration.commandline.Main$1.run(Main.java:397)
+	... 26 more
+Caused by: liquibase.exception.RollbackFailedException: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.changelog.ChangeSet.rollback(ChangeSet.java:828)
+	at liquibase.changelog.visitor.RollbackVisitor.visit(RollbackVisitor.java:53)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Scope.child(Scope.java:247)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65)
+	... 46 more
+Caused by: liquibase.exception.RollbackImpossibleException: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.change.AbstractChange.generateRollbackStatementsFromInverse(AbstractChange.java:496)
+	at liquibase.change.AbstractChange.generateRollbackStatements(AbstractChange.java:453)
+	at liquibase.database.AbstractJdbcDatabase.executeRollbackStatements(AbstractJdbcDatabase.java:1325)
+	at liquibase.changelog.ChangeSet.rollback(ChangeSet.java:814)
+	... 66 more
+Caused by: liquibase.exception.RollbackImpossibleException: dropIndex is not supported on h2
+	at liquibase.change.AbstractChange.generateRollbackStatementsFromInverse(AbstractChange.java:490)
+	... 69 more

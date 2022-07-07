@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+		logicalFilePath="db-changelog-master.xml"
+		objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="DEMO" id="tag-0">
+    	<tagDatabase tag="V0"/>
+	</changeSet>
+
+    <!-- TABLES -->
+	<changeSet author="DEMO" id="V1.0-table-1">
+		<createTable tableName="demotable1">
+			<column name="code_app" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+    <changeSet author="DEMO" id="V1.0-table-2">
+		<createTable tableName="demotable2">
+			<column name="code_user" type="VARCHAR(25)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+    <changeSet author="DEMO" id="V1.0-table-3">
+		<createTable tableName="demotable3">
+			<column name="code_component" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+    <!-- INDEXES -->
+	<changeSet author="DEMO" id="V1.0-idx-1">
+		<createIndex indexName="demotable1_idx" tableName="demotable1">
+			<column name="code_app" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DEMO" id="V1.0-idx-2">
+		<createIndex indexName="demotable2_idx" tableName="demotable2">
+			<column name="code_user" />
+		</createIndex>
+	</changeSet>
+	<changeSet author="DEMO" id="V1.0-idx-3">
+		<createIndex indexName="demotable3_idx" tableName="demotable3">
+			<column name="code_component" />
+		</createIndex>
+	</changeSet>
+
+
+    <changeSet author="DEMO" id="tag-1">
+    	<tagDatabase tag="V1.0"/>
+	</changeSet>
+</databaseChangeLog>
